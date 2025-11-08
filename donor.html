@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donor</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f5f5f5; margin: 0; }
+    .center-box { background: #fff; padding: 32px 24px; border-radius: 8px; box-shadow: 0 2px 16px rgba(5,52,222,0.08); min-width: 320px; text-align: center; }
+    .center-box form { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+    .center-box label { text-align: left; margin-bottom: 3px; }
+    .center-box input, .center-box select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    .center-box button { margin-top: 8px; padding: 10px; border: none; border-radius: 4px; background: #1976d2; color: #fff; font-weight: bold; cursor: pointer; }
+    .center-box p { margin-top: 16px; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <div class="center-box">
+    <h2>DONOR</h2>
+    <form id="donorForm">
+      <label for="donorName">Name:</label>
+      <input type="text" id="donorName" required>
+      <label for="donorAge">Age:</label>
+      <input type="number" id="donorAge" min="18" max="65" required>
+      <label for="donorBlood">Blood Group:</label>
+      <select id="donorBlood" required>
+        <option value="">Select</option>
+        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+        <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+      </select>
+      <label for="donorContact">Contact No:</label>
+      <input type="tel" id="donorContact" pattern="[0-9]{10}" required>
+      <label for="donorEmail">Email:</label>
+      <input type="email" id="donorEmail" required>
+      <label for="donorLastDate">Last Blood Donation Date:</label>
+      <input type="date" id="donorLastDate" required>
+      <button type="submit">Submit</button>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </form>
+  </div>
+  <script>
+    document.getElementById('donorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const donor = {
+        name: donorName.value,
+        age: donorAge.value,
+        blood: donorBlood.value,
+        contact: donorContact.value,
+        email: donorEmail.value,
+        lastDate: donorLastDate.value
+      };
+      localStorage.setItem('donorDetails', JSON.stringify(donor));
+      alert('Donor details saved!');
+    });
+  </script>
+</body>
+</html>
+

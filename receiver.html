@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Receiver</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f5f5f5; margin: 0; }
+    .center-box { background: #fff; padding: 32px 24px; border-radius: 8px; box-shadow: 0 2px 16px rgba(116,7,174,0.08); min-width: 320px; text-align: center; }
+    .center-box form { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+    .center-box label { text-align: left; margin-bottom: 3px; }
+    .center-box input, .center-box select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+    .center-box button { margin-top: 8px; padding: 10px; border: none; border-radius: 4px; background: #1976d2; color: #fff; font-weight: bold; cursor: pointer; }
+    .center-box p { margin-top: 16px; font-size: 0.95em; }
+  </style>
+</head>
+<body>
+  <div class="center-box">
+    <h2>RECEIVER</h2>
+    <form id="receiverForm">
+      <label for="receiverName">Name:</label>
+      <input type="text" id="receiverName" required>
+      <label for="receiverBlood">Blood Group Needed:</label>
+      <select id="receiverBlood" required>
+        <option value="">Select</option>
+        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+        <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+      </select>
+      <label for="receiverCity">City:</label>
+      <input type="text" id="receiverCity" required>
+      <label for="receiveremail">Email:</label>
+      <input type="email" id="receiveremail" required>
+      <label for="receiverContact">Contact Details:</label>
+      <input type="tel" id="receiverContact" pattern="[0-9]{10}" required>
+      <button type="submit">Submit</button>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </form>
+  </div>
+  <script>
+    document.getElementById('receiverForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const receiver = {
+        name: receiverName.value,
+        blood: receiverBlood.value,
+        city: receiverCity.value,
+        email: receiveremail.value,
+        contact: receiverContact.value
+      };
+      // Save receiver details
+      localStorage.setItem('receiverDetails', JSON.stringify(receiver));
+      // Set logged in user as receiver with role
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'Receiver', ...receiver }));
+      alert('Receiver details saved!');
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

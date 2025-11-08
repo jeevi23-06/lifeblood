@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lifeblood</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="main.js"></script>
+</head> 
+<body>
+    <header>
+        <h1 class="logo"><span class="life">Life</span><span class="blood">Blood</span></h1>
+        <nav style="display:flex;align-items:center;gap:18px;position:relative;">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#footer-contact">Contact</a>
+            <button class="register-btn" id="open-register-modal"><a href="register.html">Register</a></button>
+            <button class="login-btn"><a href="login.html">Login</a></button>
+            <button id="profileIconBtn" style="display:none;background:none;border:none;cursor:pointer;padding:0;margin-left:8px;">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" style="width:38px;height:38px;border-radius:50%;background:#eee;">
+            </button>
+        </nav>
+    </header>
+    <section class="hero">
+      <div class="hero-content">
+        <pre><p>"Donating blood is the gift of life—one drop can save a future, while one act can inspire hope."</p></pre>
+        <h1>Welcome to Lifeblood</h1>
+        <p>Your journey to better health starts here.</p>
+        <a href="#about" class="hero-btn">Learn More</a>
+      </div>
+    </section>
+    <section id="about">
+      <h2>ABOUT US</h2>
+      <p>Welcome to Lifeblood, your trusted partner in health and wellness. Our mission is to enhance lives through comprehensive blood providing services, community outreach, and personalized care. We believe in the power of health, compassion, and innovation to create a healthier future for all...</p>
+      <div class="image-scroll">
+          <img src="image.jpg" alt="pic" class="donate-pic">
+          <img src="blood.2.jpg" alt="pic" class="donate-pic">
+          <img src="blood.3.jpg" alt="pic" class="donate-pic">
+          <img src="blood.4.jpg" alt="pic" class="donate-pic">
+      </div>
+      <p>At Lifeblood, we are dedicated to raising awareness about the importance of regular health check-ups, promoting healthy lifestyles, and providing support to those in need. Our team of experienced professionals is committed to ensure that our patients receive the care they need to lead a healthy and fulfilling life.<br>Additionally, we organize various community programs and events to educate the public about blood health and various wellness topics with the goal of fostering a supportive and informed community to guide the people towards maintaining good blood health...</p>
+    </section>
+    <section id="services" style="background:#fff;padding:40px 0;">
+      <h2 style="text-align:center;margin-bottom:32px;">Our Services</h2>
+      <div class="services-container">
+        <div class="service-box"><h3>Blood Donation</h3><p>Safe and easy blood donation process with expert care and support.</p></div>
+        <div class="service-box"><h3>Blood Requests</h3><p>Quickly request blood for emergencies and scheduled treatments.</p></div>
+        <div class="service-box"><h3>Health Checkups</h3><p>Regular health checkups and wellness camps for donors and recipients.</p></div>
+        <div class="service-box"><h3>Community Events</h3><p>Awareness programs and community drives to promote healthy living.</p></div>
+      </div>
+    </section>
+    <section id="available-blood" style="background:#fff;padding:40px 0;">
+      <h2 style="text-align:center;margin-bottom:28px;color:#e53935;">Available Blood Groups</h2>
+      <div class="blood-availability-container">
+        <div class="blood-group-box" data-group="A+">A+</div>
+        <div class="blood-group-box" data-group="A-">A-</div>
+        <div class="blood-group-box" data-group="B+">B+</div>
+        <div class="blood-group-box" data-group="B-">B-</div>
+        <div class="blood-group-box" data-group="O+">O+</div>
+        <div class="blood-group-box" data-group="O-">O-</div>
+        <div class="blood-group-box" data-group="AB+">AB+</div>
+        <div class="blood-group-box" data-group="AB-">AB-</div>
+      </div>
+      <div id="blood-status-popup" class="blood-status-popup" style="display:none;"><span id="blood-status-text"></span></div>
+    </section>
+    <footer id="footer-contact">
+        <p>Email: lifeblood123@gmail.com<br>Phone: 888-312-5689</p>
+        <div style="margin-top:8px;">
+            <a href="https://instagram.com/lifeblood_d" target="_blank" style="text-decoration:none;color:white;display:inline-flex;align-items:center;">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;filter:invert(1) brightness(2);">
+                lifeblood_d
+            </a>
+        </div>
+        &copy; copyright 2024 lifeblood. All rights reserved.
+    </footer>
+    <div id="profile-box" style="position:fixed;top:70px;right:18px;z-index:9999;min-width:180px;display:none;background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,0.12);padding:18px 20px;text-align:left;">
+      <button id="closeProfileBox" style="position:absolute;top:8px;right:8px;background:none;border:none;font-size:1.3em;cursor:pointer;color:#e53935;">&#10006;</button>
+      <span id="profile-role" style="font-weight:bold;color:#e53935;"></span>
+      <ul id="profile-details" style="list-style:none;padding:0;margin:10px 0 0 0;font-size:0.98em;"></ul>
+      <button id="logoutBtn" style="margin-top:10px;background:#e53935;color:#fff;border:none;padding:6px 18px;border-radius:5px;cursor:pointer;">Logout</button>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const user = JSON.parse(localStorage.getItem('loggedInUser') || 'null');
+        const loginBtn = document.querySelector('.login-btn');
+        const registerBtn = document.querySelector('.register-btn');
+        const profileIconBtn = document.getElementById('profileIconBtn');
+        const profileBox = document.getElementById('profile-box');
+        const closeProfileBox = document.getElementById('closeProfileBox');
+        if (user && user.role && user.email && user.contact) {
+          if (loginBtn) loginBtn.style.display = "none";
+          if (registerBtn) registerBtn.style.display = "none";
+          profileIconBtn.style.display = "inline-block";
+          profileIconBtn.onclick = function() {
+            document.getElementById('profile-role').textContent = user.role + " Profile";
+            document.getElementById('profile-details').innerHTML =
+              Object.entries(user).map(([k, v]) => `<li><strong>${k.charAt(0).toUpperCase() + k.slice(1)}:</strong> ${v}</li>`).join('');
+            profileBox.style.display = "block";
+          };
+          closeProfileBox.onclick = function() { profileBox.style.display = "none"; };
+          document.getElementById('logoutBtn').onclick = function() {
+            localStorage.removeItem('loggedInUser');
+            localStorage.removeItem('loggedInRole');
+            location.reload();
+          };
+        } else {
+          profileIconBtn.style.display = "none";
+          profileBox.style.display = "none";
+          if (loginBtn) loginBtn.style.display = "";
+          if (registerBtn) registerBtn.style.display = "";
+        }
+      });
+    </script>
+</body>
+</html>
