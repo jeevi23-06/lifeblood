@@ -2,15 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    body { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #f5f5f5; margin: 0; }
-    .center-box { background: #fff; padding: 32px 24px; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); min-width: 320px; text-align: center; }
-    .role-btns { display: flex; gap: 18px; justify-content: center; margin-top: 18px; }
-    .donor-btn { background: #e53935; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; font-weight: bold; cursor: pointer; }
-    .receiver-btn { background: #1976d2; color: #fff; border: none; padding: 10px 24px; border-radius: 4px; font-weight: bold; cursor: pointer; }
-    .donor-btn:hover { background: #b71c1c; } .receiver-btn:hover { background: #0d47a1; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      margin: 0;
+    }
+    .center-box {
+      background: #fff;
+      padding: 28px 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      min-width: 260px;
+      max-width: 95vw;
+      width: 100%;
+      text-align: center;
+      margin: 0 8px;
+    }
+    .center-box h2 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      color: #e53935;
+      letter-spacing: 1px;
+    }
+    .role-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .role-btns button {
+      flex: 1 1 120px;
+      min-width: 120px;
+      max-width: 180px;
+      background: linear-gradient(90deg,#e53935 60%,#1976d2 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(229,57,53,0.08);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .role-btns button.donor-btn { background: #e53935; }
+    .role-btns button.receiver-btn { background: #1976d2; }
+    .role-btns button:hover { transform: scale(1.05); }
+    .center-box p {
+      margin-top: 22px;
+      font-size: 1rem;
+      color: #333;
+    }
+    .center-box a {
+      color: #1976d2;
+      font-weight: bold;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .center-box a:hover { color: #e53935; }
+    @media (max-width: 480px) {
+      .center-box {
+        padding: 18px 4vw;
+        border-radius: 8px;
+        min-width: 0;
+        font-size: 0.98rem;
+      }
+      .center-box h2 { font-size: 1.3rem; }
+      .role-btns button {
+        font-size: 1rem;
+        min-width: 90px;
+        padding: 10px 0;
+      }
+      .center-box p { font-size: 0.95rem; }
+    }
   </style>
 </head>
 <body>
@@ -20,7 +92,7 @@
       <a href="donor.html"><button class="donor-btn" type="button">Donor</button></a>
       <a href="receiver.html"><button class="receiver-btn" type="button">Receiver</button></a>
     </div>
-    <p style="margin-top:18px;">Already have an account? <a href="login.html">Login here</a></p>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
   </div>
 </body>
 </html>
